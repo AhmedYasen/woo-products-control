@@ -1,0 +1,7 @@
+WooCommerce
+tomli
+pandas
+xlwt
+openpyxl 
+xlsxwriter 
+xlrd
