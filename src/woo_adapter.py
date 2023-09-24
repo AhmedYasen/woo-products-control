@@ -17,6 +17,24 @@ class WooAdapter:
 
     def get(self, endpoint, params=None):
         """
-        List all products
+        send get request
         """
         return self._api.get(endpoint=endpoint, params=params).json()
+
+    def put(self, endpoint, data):
+        """
+        send update request
+        """
+        return self._api.put(endpoint, data).json()
+
+    def post(self, endpoint, data):
+        """
+        send post request
+        """
+        return self._api.post(endpoint, data).json()
+    
+    def head(self, endpoint, params=None):
+        """
+        Get Header information for endpoint
+        """
+        return self._api.get(endpoint=endpoint, params=params).headers

@@ -104,4 +104,7 @@ dist
 .tern-port
 
 # custom
-# config.toml
+config.toml
+.idea
+.vscode
+*.pyc
