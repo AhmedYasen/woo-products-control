@@ -108,3 +108,4 @@ config.toml
 .idea
 .vscode
 *.pyc
+venv

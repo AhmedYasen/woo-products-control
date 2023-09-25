@@ -25,7 +25,7 @@ def convert_to_list(pd_frame):
             "name": row["name"],
             "id": row["id"],
             "on_sale": row["on_sale"],
-            "price": row["price"],
+            "sale_price": row["sale_price"],
             "regular_price": row["regular_price"],
             "sku": row["sku"],
             "stock_quantity": row["stock_quantity"],
@@ -47,15 +47,16 @@ def main():
                      consumer_secret=cfg_api.get('consumerSecret'), )
 
     products_api = Products(woo)
-
-    internal = args.internals.joinpath('products.xlsx')
+    args.output.mkdir(parents=True, exist_ok=True)
     updated = args.output.joinpath('products.xlsx')
+    log = args.output.joinpath('log.txt')
 
     if args.action == 'update':
         updated_df = pd.read_excel(str(updated))
         updated_rows = convert_to_list(updated_df)
         updated = [row for row in updated_rows if row.get('update', 0) != 0]
-        products_api.update(updated)
+        # products_api.update(updated)
+        products_api.update(updated, log) if len(updated) > 0 else None
     else:
         all_products = products_api.read_all()
         df = pd.DataFrame(data=all_products).T
